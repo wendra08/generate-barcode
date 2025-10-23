@@ -43,7 +43,7 @@
         /* Logo Kementerian di kiri atas */
         .top-logo {
             float: left;
-            width: 100px;
+            width: 150px;
             height: auto;
             margin-right: 20px;
         }
@@ -82,13 +82,13 @@
         }
 
         .qr-container img {
-            width: 230px;
-            height: 200px;
+            width: 210px;
+            height: 190px;
         }
 
         .qr-container:nth-child(2) img {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
         }
 
         /* Barcode Code Text */
@@ -104,13 +104,13 @@
         /* Footer dengan SVLK Logo */
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 10px;
         }
 
         .footer img {
             width: 250px;
             height: auto;
-            margin-bottom: 5px;
+            /* margin-bottom: 2px; */
         }
 
         .footer-text {
