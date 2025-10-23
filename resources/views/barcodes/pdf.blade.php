@@ -43,7 +43,7 @@
         /* Logo Kementerian di kiri atas */
         .top-logo {
             float: left;
-            width: 150px;
+            width: 120px;
             height: auto;
             margin-right: 20px;
         }
