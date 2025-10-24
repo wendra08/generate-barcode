@@ -61,11 +61,12 @@
             letter-spacing: 0.8px;
         }
 
-        .header h3 {
-            margin: 55px 0 0 0;
+        .title h3 {
+            margin: 10px 0 0 0;
             font-size: 30px;
             font-weight: bold;
             letter-spacing: 0.8px;
+            text-align: center;
         }
 
         /* QR Codes Section */
@@ -135,6 +136,9 @@
                     <div class="header">
                         <h2>KEMENTERIAN KEHUTANAN</h2>
                         <h2>REPUBLIK INDONESIA</h2>
+                    </div>
+
+                    <div class="title">
                         <h3>PT. ITCI KARTIKA UTAMA</h3>
                     </div>
                 </div>
