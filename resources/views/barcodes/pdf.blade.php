@@ -2,173 +2,146 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Barcode Document</title>
+    <title>Barcode Document - A5</title>
     <style>
         @page {
+            size: A5 portrait;
             margin: 0;
         }
 
         body {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Times New Roman', Times, serif;
+            background: white;
             margin: 0;
             padding: 0;
         }
 
-        .page-wrapper {
-            width: 100%;
-            height: 100vh;
-            display: table;
-            padding: 30px;
-        }
-
-        .vertical-center {
-            display: table-cell;
-            vertical-align: middle;
+        .barcode-card {
+            width: 148mm;      /* A5 width */
+            height: 210mm;     /* A5 height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
         }
 
         .box {
-            border: 2px solid #000;
-            padding: 30px 40px;
-            margin: 0 auto;
-            width: 650px;
-            min-height: 500px;
+            border: 1.5px solid #000;
+            width: 135mm;
+            height: 185mm;
+            padding: 15mm 10mm;
+            position: relative;
         }
 
-        /* Top section with logo and header */
-        .top-section {
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
-
-        /* Logo Kementerian di kiri atas */
-        .top-logo {
-            float: left;
-            width: 120px;
+        /* Logo Kementerian kiri atas */
+        .logo-kementerian {
+            position: absolute;
+            top: 12mm;
+            left: 15mm;
+            width: 22mm;
             height: auto;
-            margin-right: 20px;
         }
 
-        .header {
+        /* Header */
+        .header-section {
             text-align: center;
-            margin-bottom: 60px;
-            padding-top: 20px;
-        }
-
-        .header h2 {
-            margin: 2px 0;
-            font-size: 30px;
+            margin-top: 10mm;
             font-weight: bold;
-            letter-spacing: 0.8px;
+            line-height: 1.3;
         }
 
-        .title h3 {
-            margin: 10px 0 0 0;
-            font-size: 30px;
+        .header-section .title {
+            font-size: 13pt;
+        }
+
+        /* Nama perusahaan */
+        .company-name {
+            text-align: center;
+            font-size: 13pt;
             font-weight: bold;
-            letter-spacing: 0.8px;
-            text-align: center;
+            margin-top: 8mm;
         }
 
-        /* QR Codes Section */
-        .qr-section {
+        /* QR Codes */
+        .qr-codes-section {
             text-align: center;
-            margin: 50px 0 30px 0;
-            clear: both;
+            margin-top: 8mm;
         }
 
-        .qr-container {
+        .qr-code {
             display: inline-block;
-            margin: 0 10px;
-            vertical-align: middle;
+            margin: 0 4mm;
         }
 
-        .qr-container img {
-            width: 210px;
-            height: 190px;
+        .qr-code img {
+            width: 30mm;
+            height: 30mm;
         }
 
-        .qr-container:nth-child(2) img {
-            width: 150px;
-            height: 150px;
-        }
-
-        /* Barcode Code Text */
-        .barcode-code {
-            font-size: 26px;
-            font-weight: normal;
+        /* Nomor Barcode */
+        .barcode-number {
             text-align: center;
-            margin: 30px 0;
-            letter-spacing: 1px;
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', monospace;
+            font-size: 11pt;
+            letter-spacing: 0.5px;
+            margin-top: 6mm;
         }
 
-        /* Footer dengan SVLK Logo */
-        .footer {
+        /* Footer - Logo SVLK */
+        .footer-section {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 8mm;
         }
 
-        .footer img {
-            width: 250px;
+        .svlk-logo {
+            width: 28mm;
             height: auto;
-            /* margin-bottom: 2px; */
+            margin-bottom: 3mm;
         }
 
-        .footer-text {
-            font-size: 20px;
-            margin-top: 5px;
-            font-weight: normal;
+        .license-number {
+            font-size: 10pt;
+            font-family: 'Times New Roman', Times, serif;
         }
     </style>
 </head>
 <body>
-    @foreach($barcodeData as $barcode)
-    <div class="page-wrapper">
-        <div class="vertical-center">
-            <div class="box">
-                <div class="top-section">
-                    <!-- Logo Kementerian (Tree Logo) - Top Left -->
-                    @if(isset($barcode['kementerian_logo']))
-                        <img src="data:image/png;base64,{{ $barcode['kementerian_logo'] }}" alt="Logo" class="top-logo">
-                    @endif
+    <div class="barcode-card">
+        <div class="box">
+            <!-- Logo Kementerian -->
+            <img src="data:image/png;base64,{{ $barcode['kementerian_logo'] }}" alt="Logo Kementerian" class="logo-kementerian">
 
-                    <!-- Header -->
-                    <div class="header">
-                        <h2>KEMENTERIAN KEHUTANAN</h2>
-                        <h2>REPUBLIK INDONESIA</h2>
-                    </div>
-
-                    <div class="title">
-                        <h3>PT. ITCI KARTIKA UTAMA</h3>
-                    </div>
+            <!-- Header -->
+            <div class="header-section">
+                <div class="title">
+                    KEMENTERIAN KEHUTANAN<br>
+                    REPUBLIK INDONESIA
                 </div>
+            </div>
 
-                <!-- QR Codes Section -->
-                <div class="qr-section">
-                    <div class="qr-container">
-                        <img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR Code">
-                    </div>
-                    <div class="qr-container">
-                        <img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR Code">
-                    </div>
-                    <div class="qr-container">
-                        <img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR Code">
-                    </div>
-                </div>
+            <!-- Nama Perusahaan -->
+            <div class="company-name">
+                PT. ITCI KARTIKA UTAMA
+            </div>
 
-                <!-- Barcode Code as Text -->
-                <div class="barcode-code">{{ $barcode['code'] }}</div>
+            <!-- QR Codes -->
+            <div class="qr-codes-section">
+                <div class="qr-code"><img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR"></div>
+                <div class="qr-code"><img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR"></div>
+                <div class="qr-code"><img src="data:image/png;base64,{{ $barcode['qr_image'] }}" alt="QR"></div>
+            </div>
 
-                <!-- Footer with SVLK Logo -->
-                <div class="footer">
-                    @if(isset($barcode['svlk_logo']))
-                        <img src="data:image/png;base64,{{ $barcode['svlk_logo'] }}" alt="SVLK Logo">
-                    @endif
-                    <div class="footer-text">PHL-64-01-0068</div>
-                </div>
+            <!-- Nomor Barcode -->
+            <div class="barcode-number">
+                {{ $barcode['code'] }}
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-section">
+                <img src="data:image/png;base64,{{ $barcode['svlk_logo'] }}" alt="SVLK Logo" class="svlk-logo">
+                <div class="license-number">PHL-64-01-0068</div>
             </div>
         </div>
     </div>
-    @endforeach
 </body>
 </html>
